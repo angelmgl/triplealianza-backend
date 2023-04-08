@@ -15,7 +15,7 @@ SECRET_KEY = config["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config["DEBUG"] == "True"
 
-ALLOWED_HOSTS = ["triplealianza.com.py", "api.triplealianza.com.py"]
+ALLOWED_HOSTS = ["localhost", "triplealianza.com.py", "api.triplealianza.com.py"]
 
 
 # Application definition
