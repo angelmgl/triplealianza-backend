@@ -9,6 +9,8 @@ djangorestframework = "*"
 python-dotenv = "*"
 gunicorn = "*"
 django-cors-headers = "*"
+django-ckeditor = "*"
+pillow = "*"
 
 [dev-packages]
 
