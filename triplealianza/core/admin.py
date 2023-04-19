@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import CategoryModel, PostModel
 
-# Register your models here.
 @admin.register(CategoryModel)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'created_at', 'updated_at')

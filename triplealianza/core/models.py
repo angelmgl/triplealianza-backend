@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class BasePostModel(models.Model):
@@ -10,7 +10,7 @@ class BasePostModel(models.Model):
     featured_image = models.ImageField(upload_to='files', verbose_name="Imagen destacada")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creación")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Última edición")
-    content = RichTextField(verbose_name="Contenido")
+    content = RichTextUploadingField(verbose_name="Contenido")
 
     class Meta:
         abstract = True
@@ -26,7 +26,7 @@ class CategoryModel(BasePostModel):
 
 
 class PostModel(BasePostModel):
-    category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE, verbose_name="Categoría")
+    category = models.ForeignKey(CategoryModel, related_name="posts", on_delete=models.CASCADE, verbose_name="Categoría")
 
     class Meta:
         verbose_name = "Publicación"
