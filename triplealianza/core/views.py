@@ -1,5 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from rest_framework import generics, pagination
+from .models import PostModel
+from .serializers import PostListSerializer, PostSerializer
+
+class PostPagination(pagination.PageNumberPagination):
+    page_size = 20
+
 
 def welcome(request):
     response = {
@@ -7,3 +14,15 @@ def welcome(request):
         'description': 'Hey! We are under construction right now, but don\'t worry! We are working hard to get everything ready soon and provide you with the best content! Thanks for your patience and see you soon! 🚧👷‍♂️👷‍♀️'
     }
     return JsonResponse(response)
+
+
+class PostList(generics.ListAPIView):
+    queryset = PostModel.objects.all()
+    serializer_class = PostListSerializer
+    pagination_class = PostPagination
+
+
+class PostDetail(generics.RetrieveAPIView):
+    queryset = PostModel.objects.all()
+    serializer_class = PostSerializer
+    lookup_field = 'slug'
