@@ -34,3 +34,16 @@ class PostModel(BasePostModel):
 
     def __str__(self):
         return self.title
+
+
+class MenuModel(models.Model):
+    text = models.CharField(max_length=50, verbose_name="Texto")
+    url = models.CharField(max_length=50, verbose_name="URL")
+    order = models.IntegerField(unique=True, verbose_name="Orden")
+
+    class Meta:
+        verbose_name = "Enlace del menú"
+        verbose_name_plural = "Enlaces del menú"
+
+    def __str__(self):
+        return self.text
