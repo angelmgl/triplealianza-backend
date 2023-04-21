@@ -11,6 +11,7 @@ gunicorn = "*"
 django-cors-headers = "*"
 django-ckeditor = "*"
 pillow = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 
