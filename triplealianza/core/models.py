@@ -44,6 +44,7 @@ class MenuModel(models.Model):
     class Meta:
         verbose_name = "Enlace del menú"
         verbose_name_plural = "Enlaces del menú"
+        ordering = ['order']
 
     def __str__(self):
         return self.text

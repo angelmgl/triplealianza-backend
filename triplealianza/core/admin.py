@@ -12,4 +12,3 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(MenuModel)
 class MenuAdmin(admin.ModelAdmin):
     list_display = ('text', 'order', 'url')
-    ordering = ('order', )

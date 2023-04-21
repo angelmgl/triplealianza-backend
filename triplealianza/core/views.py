@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import generics, pagination
-from .models import PostModel, CategoryModel
-from .serializers import PostListSerializer, PostSerializer, CategorySerializer, CategoryListSerializer
+from .models import PostModel, CategoryModel, MenuModel
+from .serializers import PostListSerializer, PostSerializer, CategorySerializer, CategoryListSerializer, MenuSerializer
 
 class PostPagination(pagination.PageNumberPagination):
     page_size = 20
@@ -38,3 +38,8 @@ class CategoryDetail(generics.RetrieveAPIView):
     queryset = CategoryModel.objects.all()
     serializer_class = CategorySerializer
     lookup_field = 'slug'
+
+
+class MenuList(generics.ListAPIView):
+    queryset = MenuModel.objects.all()
+    serializer_class = MenuSerializer

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import PostModel, CategoryModel
+from .models import PostModel, CategoryModel, MenuModel
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -24,3 +24,9 @@ class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CategoryModel
         fields = ("id", "featured_image", "title", "description", "slug")
+
+
+class MenuSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuModel
+        fields = "__all__"
