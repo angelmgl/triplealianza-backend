@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import PostModel, CategoryModel, MenuModel
 from bs4 import BeautifulSoup
 from django.conf import settings
+from django.shortcuts import get_object_or_404
 from .serializers import PostListSerializer, PostSerializer, CategorySerializer, CategoryListSerializer, MenuSerializer
 
 # A utility function to update all media URLs in the content field of a given object
@@ -33,6 +34,16 @@ class PostList(generics.ListAPIView):
     queryset = PostModel.objects.all()
     serializer_class = PostListSerializer
     pagination_class = PostPagination
+
+
+class PostListByCategory(generics.ListAPIView):
+    serializer_class = PostListSerializer
+    pagination_class = PostPagination
+
+    def get_queryset(self):
+        category_slug = self.kwargs.get('category_slug')
+        category = get_object_or_404(CategoryModel, slug=category_slug)
+        return PostModel.objects.filter(category=category)
 
 
 class PostDetail(generics.RetrieveAPIView):

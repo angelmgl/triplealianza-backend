@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework import serializers
 from .models import PostModel, CategoryModel, MenuModel
 
