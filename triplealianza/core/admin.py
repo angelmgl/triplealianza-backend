@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import CategoryModel, PostModel, MenuModel, PageModel, ImageModel
+from .models import (
+    CategoryModel, 
+    PostModel, 
+    MenuModel, 
+    PageModel, 
+    ImageModel, 
+    SlideModel
+)
 
 @admin.register(PageModel)
 class PageAdmin(admin.ModelAdmin):
@@ -20,3 +27,7 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(MenuModel)
 class MenuAdmin(admin.ModelAdmin):
     list_display = ('text', 'order', 'url')
+
+@admin.register(SlideModel)
+class SlideAdmin(admin.ModelAdmin):
+    list_display = ('title', 'order', 'button_url')

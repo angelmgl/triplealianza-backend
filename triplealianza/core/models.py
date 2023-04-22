@@ -7,8 +7,8 @@ class ImageModel(models.Model):
     image = models.ImageField(upload_to='images', verbose_name="Imagen")
 
     class Meta:
-        verbose_name = "Imagen"
-        verbose_name_plural = "Imágenes"
+        verbose_name = "imagen"
+        verbose_name_plural = "imágenes"
 
     def __str__(self):
         return self.title
@@ -30,8 +30,8 @@ class BasePostModel(models.Model):
 
 class CategoryModel(BasePostModel):
     class Meta:
-        verbose_name = "Categoría"
-        verbose_name_plural = "Categorías"
+        verbose_name = "categoría"
+        verbose_name_plural = "categorías"
 
     def __str__(self):
         return self.title
@@ -41,8 +41,8 @@ class PostModel(BasePostModel):
     category = models.ForeignKey(CategoryModel, related_name="posts", on_delete=models.CASCADE, verbose_name="Categoría")
 
     class Meta:
-        verbose_name = "Publicación"
-        verbose_name_plural = "Publicaciones"
+        verbose_name = "publicación"
+        verbose_name_plural = "publicaciones"
 
     def __str__(self):
         return self.title
@@ -50,8 +50,8 @@ class PostModel(BasePostModel):
 
 class PageModel(BasePostModel):
     class Meta:
-        verbose_name = "Página"
-        verbose_name_plural = "Páginas"
+        verbose_name = "página"
+        verbose_name_plural = "páginas"
 
     def __str__(self):
         return self.title
@@ -63,9 +63,26 @@ class MenuModel(models.Model):
     order = models.IntegerField(unique=True, verbose_name="Orden")
 
     class Meta:
-        verbose_name = "Enlace del menú"
-        verbose_name_plural = "Enlaces del menú"
+        verbose_name = "enlace del menú"
+        verbose_name_plural = "enlaces del menú"
         ordering = ['order']
 
     def __str__(self):
         return self.text
+
+
+class SlideModel(models.Model):
+    title = models.CharField(max_length=150, verbose_name="Título")
+    description = models.TextField(verbose_name="Descripción")
+    button_url = models.CharField(max_length=50, verbose_name="Enlace del botón")
+    button_label = models.CharField(max_length=50, verbose_name="Texto del botón")
+    image = models.ForeignKey(ImageModel, on_delete=models.SET_NULL, null=True, blank=True)
+    order = models.IntegerField(unique=True, verbose_name="Orden")
+
+    class Meta:
+        verbose_name = "slide"
+        verbose_name_plural = "slides"
+        ordering = ['order']
+
+    def __str__(self):
+        return self.title

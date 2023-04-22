@@ -1,10 +1,25 @@
 from django.http import JsonResponse
 from rest_framework import generics, pagination
-from .models import PostModel, CategoryModel, MenuModel, PageModel
+from .models import (
+    PostModel, 
+    CategoryModel, 
+    MenuModel, 
+    PageModel,
+    SlideModel
+)
 from bs4 import BeautifulSoup
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from .serializers import PostListSerializer, PostSerializer, CategorySerializer, CategoryListSerializer, PageSerializer, PageListSerializer, MenuSerializer
+from .serializers import (
+    PostListSerializer,
+    PostSerializer,
+    CategorySerializer,
+    CategoryListSerializer,
+    PageSerializer,
+    PageListSerializer,
+    MenuSerializer,
+    SlideSerializer
+)
 
 # A utility function to update all media URLs in the content field of a given object
 def add_domain_to_media_urls(content: str) -> str:
@@ -75,6 +90,7 @@ class PageDetail(generics.RetrieveAPIView):
         response.data = data
         return response
 
+
 class CategoryList(generics.ListAPIView):
     queryset = CategoryModel.objects.all().order_by('-created_at')
     serializer_class = CategoryListSerializer
@@ -97,3 +113,8 @@ class CategoryDetail(generics.RetrieveAPIView):
 class MenuList(generics.ListAPIView):
     queryset = MenuModel.objects.all()
     serializer_class = MenuSerializer
+
+
+class SlideList(generics.ListAPIView):
+    queryset = SlideModel.objects.all()
+    serializer_class = SlideSerializer

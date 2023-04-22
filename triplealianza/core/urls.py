@@ -1,6 +1,16 @@
 from django.urls import path
-from .views import welcome
-from .views import PostList, PostListByCategory, PostDetail, PageList, PageDetail, CategoryDetail, CategoryList, MenuList
+from .views import (
+    welcome,
+    PostList, 
+    PostListByCategory, 
+    PostDetail, 
+    PageList, 
+    PageDetail, 
+    CategoryDetail, 
+    CategoryList, 
+    MenuList,
+    SlideList
+)
 
 urlpatterns = [
     path("welcome/", welcome, name="welcome"),
@@ -12,4 +22,5 @@ urlpatterns = [
     path("categories/<slug>/", CategoryDetail.as_view(), name="category-detail"),
     path("pages/", PageList.as_view(), name="page-list"),
     path("pages/<slug>/", PageDetail.as_view(), name="page-detail"),
+    path("slides/", SlideList.as_view(), name="slide-list"),
 ]
