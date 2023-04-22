@@ -2,12 +2,24 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
+class ImageModel(models.Model):
+    title = models.CharField(max_length=150, verbose_name="Título")
+    image = models.ImageField(upload_to='images', verbose_name="Imagen")
+
+    class Meta:
+        verbose_name = "Imagen"
+        verbose_name_plural = "Imágenes"
+
+    def __str__(self):
+        return self.title
+
+
 class BasePostModel(models.Model):
     title = models.CharField(max_length=150, verbose_name="Título")
     seo_title = models.CharField(max_length=150, verbose_name="Título SEO", default="")
     slug = models.CharField(max_length=150, verbose_name="Slug URL", unique=True)
     description = models.TextField(verbose_name="Descripción")
-    featured_image = models.ImageField(upload_to='files', verbose_name="Imagen destacada")
+    featured_image = models.ForeignKey(ImageModel, on_delete=models.SET_NULL, null=True, blank=True)
     content = RichTextUploadingField(verbose_name="Contenido")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creación")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Última edición")
