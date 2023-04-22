@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import CategoryModel, PostModel, MenuModel
+from .models import CategoryModel, PostModel, MenuModel, PageModel
+
+@admin.register(PageModel)
+class PageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'created_at', 'updated_at')
 
 @admin.register(CategoryModel)
 class CategoryAdmin(admin.ModelAdmin):

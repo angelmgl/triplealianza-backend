@@ -36,6 +36,15 @@ class PostModel(BasePostModel):
         return self.title
 
 
+class PageModel(BasePostModel):
+    class Meta:
+        verbose_name = "Página"
+        verbose_name_plural = "Páginas"
+
+    def __str__(self):
+        return self.title
+
+
 class MenuModel(models.Model):
     text = models.CharField(max_length=50, verbose_name="Texto")
     url = models.CharField(max_length=50, verbose_name="URL")
