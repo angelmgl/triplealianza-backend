@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework import serializers
-from .models import PostModel, CategoryModel, MenuModel, ImageModel
+from .models import PostModel, CategoryModel, MenuModel, ImageModel, PageModel
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -38,6 +38,22 @@ class CategoryListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CategoryModel
+        fields = ("id", "featured_image", "title", "description", "slug")
+
+
+class PageSerializer(serializers.ModelSerializer):
+    featured_image = ImageSerializer()
+
+    class Meta:
+        model = PageModel
+        fields = "__all__"
+
+
+class PageListSerializer(serializers.ModelSerializer):
+    featured_image = ImageSerializer()
+
+    class Meta:
+        model = PostModel
         fields = ("id", "featured_image", "title", "description", "slug")
 
 
