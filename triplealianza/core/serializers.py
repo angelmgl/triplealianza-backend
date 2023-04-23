@@ -23,8 +23,15 @@ class SlideSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class CategoryPreviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CategoryModel
+        fields = ("id", "title", "slug")
+
+
 class PostSerializer(serializers.ModelSerializer):
     featured_image = ImageSerializer()
+    category = CategoryPreviewSerializer()
 
     class Meta:
         model = PostModel
@@ -33,10 +40,11 @@ class PostSerializer(serializers.ModelSerializer):
 
 class PostListSerializer(serializers.ModelSerializer):
     featured_image = ImageSerializer()
+    category = CategoryPreviewSerializer()
 
     class Meta:
         model = PostModel
-        fields = ("id", "featured_image", "title", "description", "slug")
+        fields = ("id", "featured_image", "title", "description", "slug", "category")
 
 
 class CategorySerializer(serializers.ModelSerializer):
