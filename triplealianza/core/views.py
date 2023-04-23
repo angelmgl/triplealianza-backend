@@ -5,7 +5,8 @@ from .models import (
     CategoryModel, 
     MenuModel, 
     PageModel,
-    SlideModel
+    SlideModel,
+    ImageModel
 )
 from bs4 import BeautifulSoup
 from django.conf import settings
@@ -18,7 +19,8 @@ from .serializers import (
     PageSerializer,
     PageListSerializer,
     MenuSerializer,
-    SlideSerializer
+    SlideSerializer,
+    ImageSerializer
 )
 
 # A utility function to update all media URLs in the content field of a given object
@@ -118,3 +120,8 @@ class MenuList(generics.ListAPIView):
 class SlideList(generics.ListAPIView):
     queryset = SlideModel.objects.all()
     serializer_class = SlideSerializer
+
+
+class ImageList(generics.ListAPIView):
+    queryset = ImageModel.objects.all()
+    serializer_class = ImageSerializer

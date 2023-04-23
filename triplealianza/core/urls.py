@@ -9,7 +9,8 @@ from .views import (
     CategoryDetail, 
     CategoryList, 
     MenuList,
-    SlideList
+    SlideList,
+    ImageList
 )
 
 urlpatterns = [
@@ -23,4 +24,5 @@ urlpatterns = [
     path("pages/", PageList.as_view(), name="page-list"),
     path("pages/<slug>/", PageDetail.as_view(), name="page-detail"),
     path("slides/", SlideList.as_view(), name="slide-list"),
+    path("images/", ImageList.as_view(), name="image-list"),
 ]
