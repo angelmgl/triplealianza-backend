@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     welcome,
     PostList, 
+    LatestPostList,
     PostListByCategory, 
     PostDetail, 
     PageList, 
@@ -17,6 +18,7 @@ urlpatterns = [
     path("welcome/", welcome, name="welcome"),
     path("menu/", MenuList.as_view(), name="menu-list"),
     path("posts/", PostList.as_view(), name="post-list"),
+    path("posts/latest/", LatestPostList.as_view(), name="latest-post-list"),
     path("posts/category/<slug:category_slug>/", PostListByCategory.as_view(), name="post-list-by-category"),
     path("posts/<slug:slug>/", PostDetail.as_view(), name="post-detail"),
     path("categories/", CategoryList.as_view(), name="category-list"),

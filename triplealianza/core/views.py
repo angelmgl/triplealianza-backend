@@ -46,6 +46,11 @@ def welcome(request):
 
 
 class PostList(generics.ListAPIView):
+    queryset = PostModel.objects.all().order_by('-created_at')
+    serializer_class = PostListSerializer
+
+
+class LatestPostList(generics.ListAPIView):
     queryset = PostModel.objects.all().order_by('-created_at')[:6]
     serializer_class = PostListSerializer
 
