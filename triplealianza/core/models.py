@@ -5,6 +5,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class ImageModel(models.Model):
     title = models.CharField(max_length=150, verbose_name="Título")
     image = models.ImageField(upload_to='images', verbose_name="Imagen")
+    width = models.IntegerField(verbose_name="Ancho", blank=True, null=True)
+    height = models.IntegerField(verbose_name="Altura", blank=True, null=True)
 
     class Meta:
         verbose_name = "imagen"
