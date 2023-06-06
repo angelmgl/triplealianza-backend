@@ -134,4 +134,18 @@ MEDIA_ROOT =  BASE_DIR / 'media'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',  
+        'toolbar_Custom': [ 
+            ['Format'],
+            ['Bold', 'Italic', 'Underline', 'NumberedList', 'BulletedList', 'Undo', 'Redo'],
+            ['Link', 'Unlink'],
+            ['Image', 'Table', 'HorizontalRule'],
+            ['TextColor', 'BGColor'],
+            ['Source']
+        ],
+    }
+}
+
 DOMAIN_URL = config["DOMAIN_URL"]
